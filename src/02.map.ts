@@ -40,7 +40,9 @@ import { concatMap, switchMap, mergeMap } from 'rxjs/operators';
  *          const allFibonacciObs = of(...).pipe(...);
  *          allFibonacciObs.subscribe(...);
  */
-export const allFibonacciObs: Observable<number> = undefined;
+export const allFibonacciObs: Observable<number> = FibonacciService.getOperations().pipe(
+    concatMap((operator) => FibonacciService.getResults(operator))
+);
 /**
  * ##################### CHALLEGNGE TWO ##################### 
  * 
@@ -59,4 +61,6 @@ export const allFibonacciObs: Observable<number> = undefined;
  *          const fastestFibonacciObs = of(...).pipe(...);
  *          fastestFibonacciObs.subscribe(...);
  */
-export const fastestFibonacciObs: Observable<number> = undefined;
+export const fastestFibonacciObs: Observable<number> = FibonacciService.getOperations().pipe(
+    switchMap((operator) => FibonacciService.getResults(operator))
+);
